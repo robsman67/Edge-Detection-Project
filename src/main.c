@@ -12,6 +12,7 @@ int main(int const argc, char **const argv) {
      * Parse arguments. The parsed image file name and threshold are available
      * in the image_file_name and threshold global variables (see argparser.h).
      */
+
     parse_arguments(argc, argv);
     printf("Computing edges for image file %s with threshold %i\n",
            image_file_name, threshold);

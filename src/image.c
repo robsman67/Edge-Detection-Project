@@ -13,7 +13,22 @@ void apply_threshold(float *img, int w, int h, int T) {
     (void)h;
     (void)T;
 
-    // TODO: Implement me!
+    int position;
+
+    for (int i = 0; i < w; i++){ //for the w
+        //printf("i = %d", i);
+        for (int j = 0; j < h; j++){ // for the h
+            position = j * w + i; // position of the table
+            //printf("position = %d", position);
+            //printf("image color in this position %f", img[position]);
+            if(img[position] > T){
+                 img[position] = 255.0f;
+            }else {
+                img[position] = 0.0f;
+            }
+        }
+    }
+
 }
 
 void scale_image(float *result, const float *img, int w, int h) {
@@ -21,6 +36,42 @@ void scale_image(float *result, const float *img, int w, int h) {
     (void)img;
     (void)w;
     (void)h;
+
+    int position;
+    float min = 255; // in order to compare
+    float max = 0;
+    float scaled_p;
+
+    //first we must find the min and the max
+    for (int i = 0; i < w; i++){ //for the w
+        for (int j = 0; j < h; j++){ // for the h
+            position = j * w + i; // position of the table
+            if (min > img[position]){
+                min = img[position];
+            }
+            if (max < img[position]){
+                max = img[position];
+            }
+        }
+    }
+
+    if (max == min){ // because div by 0
+        for (int i = 0; i < w; i++){ //for the w
+            for (int j = 0; j < h; j++){ // for the h
+                position = j * w + i; // position of the table
+                result[position] = 0;
+            }
+        }
+    }else {
+        for (int i = 0; i < w; i++){ //for the w
+            for (int j = 0; j < h; j++){ // for the h
+                position = j * w + i; // position of the table
+                scaled_p = (img[position] - min) / (max - min) * 255;
+                result[position] = scaled_p;
+            }
+        }
+    }
+
 
     // TODO: Implement me!
 }

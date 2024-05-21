@@ -17,7 +17,16 @@ void gradient_magnitude(float *result, const float *d_x, const float *d_y,
     (void)w;
     (void)h;
 
-    // TODO: Implement me!
+    int unsigned grad; //unsigned value of the grad
+    int position;
+    for (int i = 0; i < w; i++){ //for the w
+
+        for (int j = 0; j < h; j++){ // for the h
+            position = j * w + i; // position of the table
+            grad = sqrt(d_x[position]*d_x[position] + d_y[position]*d_y[position]); //calcul
+            result[position] = grad; // store the results
+        }
+    }
 }
 
 const float sobel_x[9] = {1, 0, -1, 2, 0, -2, 1, 0, -1};
