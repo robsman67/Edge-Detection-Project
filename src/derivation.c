@@ -18,7 +18,7 @@ void gradient_magnitude(float *result, const float *d_x, const float *d_y,
     (void)h;
 
     int grad; //unsigned value of the grad
-    int position;
+    int position = 0;
     for (int i = 0; i < w; i++){ //for the w
 
         for (int j = 0; j < h; j++){ // for the h
