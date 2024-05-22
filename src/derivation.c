@@ -24,7 +24,7 @@ void gradient_magnitude(float *result, const float *d_x, const float *d_y,
         for (int j = 0; j < w; j++){ // for the w
             position = i * w + j; // position of the table
             grad = sqrt(pow((d_x[position]), 2) + pow(d_y[position],2) ); //calcul
-            result[position] = abs(grad); // store the results
+            result[position] = fabs(grad); // store the results
         }
     }
 }
