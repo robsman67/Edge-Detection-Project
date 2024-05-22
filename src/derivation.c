@@ -17,14 +17,14 @@ void gradient_magnitude(float *result, const float *d_x, const float *d_y,
     (void)w;
     (void)h;
 
-    int unsigned grad; //unsigned value of the grad
+    int grad; //unsigned value of the grad
     int position;
     for (int i = 0; i < w; i++){ //for the w
 
         for (int j = 0; j < h; j++){ // for the h
             position = j * w + i; // position of the table
             grad = sqrt(pow(d_x[position], 2) + pow(d_y[position],2) ); //calcul
-            result[position] = grad; // store the results
+            result[position] = abs(grad); // store the results
         }
     }
 }
