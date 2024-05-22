@@ -15,10 +15,10 @@ void apply_threshold(float *img, int w, int h, int T) {
 
     int position;
 
-    for (int i = 0; i < w; i++){ //for the w
-        //printf("i = %d", i);
-        for (int j = 0; j < h; j++){ // for the h
-            position = j * w + i; // position of the table
+    for (int i = 0; i < h; i++){ //for the h
+
+        for (int j = 0; j < w; j++){ // for the w
+            position = i * w + j; // position of the table
             //printf("position = %d", position);
             //printf("image color in this position %f", img[position]);
             if(img[position] > T){
@@ -43,9 +43,10 @@ void scale_image(float *result, const float *img, int w, int h) {
     float scaled_p;
 
     //first we must find the min and the max
-    for (int i = 0; i < w; i++){ //for the w
-        for (int j = 0; j < h; j++){ // for the h
-            position = j * w + i; // position of the table
+    for (int i = 0; i < h; i++){ //for the h
+
+        for (int j = 0; j < w; j++){ // for the w
+            position = i * w + j; // position of the table
             if (min > img[position]){
                 min = img[position];
             }
