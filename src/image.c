@@ -28,7 +28,6 @@ void apply_threshold(float *img, int w, int h, int T) {
             }
         }
     }
-
 }
 
 void scale_image(float *result, const float *img, int w, int h) {
@@ -72,9 +71,6 @@ void scale_image(float *result, const float *img, int w, int h) {
             }
         }
     }
-
-
-    // TODO: Implement me!
 }
 
 float get_pixel_value(const float *img, int w, int h, int x, int y) {
@@ -84,9 +80,23 @@ float get_pixel_value(const float *img, int w, int h, int x, int y) {
     (void)x;
     (void)y;
 
+    if (x < 0) {
+        x = -x - 1;
+    } else if (x >= w) {
+        x = 2 * w - x - 1;
+    }
+
+    if (y < 0) {
+        y = -y - 1;
+    } else if (y >= h) {
+        y = 2 * h - y - 1;
+    }
+
+    return img[y * w + x];
+
     // TODO: Implement me!
 
-    return 0;
+    //return 0;
 }
 
 float *array_init(int size) {
