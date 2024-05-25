@@ -28,14 +28,11 @@ void convolve(float *result, const float *img, int w, int h,
                     int img_x = x - a + i; //position from assigment
                     int img_y = y - b + j;
                     float img_value = get_pixel_value(img, w, h, img_x, img_y); // get the correct value
-                    float kernel_value = matrix[j * w_m + i]; //corresponding value of the kernel
+                    float kernel_value = matrix[j * w_m + i]; //corresponding value of the kernel (matrix)
                     sum += img_value * kernel_value;
-
                 }
             }
             result[y * w + x] = sum; // store the result in the right possition
         }
     }
-
-    // TODO: Implement me!
 }

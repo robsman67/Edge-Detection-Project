@@ -7,17 +7,15 @@
 #include "gaussian_kernel.h"
 #include "image.h"
 
+
 int main(int const argc, char **const argv) {
     /**
      * Parse arguments. The parsed image file name and threshold are available
      * in the image_file_name and threshold global variables (see argparser.h).
      */
-    printf("test");
     parse_arguments(argc, argv);
     printf("Computing edges for image file %s with threshold %i\n",image_file_name, threshold);
-      // void apply_threshold(float *img, int w, int h, int T);
-
-
+    fflush(stdout);
 
 
     /**
@@ -66,3 +64,4 @@ int main(int const argc, char **const argv) {
      * Remember to free dynamically allocated memory when it is no longer used!
      */
 }
+
