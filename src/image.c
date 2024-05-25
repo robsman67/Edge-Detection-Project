@@ -116,9 +116,10 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
         return NULL;
     }
 
-
     //store the w and h and check if they are positive
     fscanf(file, "%d %d \n", w, h);
+    printf("w = %d and h = %d", *w, *h);
+    fflush(stdout);
     if (*w < 0 || *h < 0){
         fclose(file);
         return NULL;
@@ -143,32 +144,19 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
         for (int j = 0; j < *w; j++) { // for the w
             position = i * *w + j; // position of the table
             fscanf(file, "%f", &value);
+            printf("w = %d with h = %d and value = %f \n", *w, *h, value);
+            fflush(stdout);
+            if(value > 255 || value < 0){
+                return NULL;
+            }
             img[position] = value;
+
         }
     }
 
     fclose(file);
 
     return img;
-
-    char myString[10000];
-    while(fgets(myString, 100, file)) {
-        printf("ligne %s", myString);
-        fflush(stdout);
-    }
-
-/* int size = *w * *h;
-   float *img = NULL;
-   img = array_init(size);
-*/
-
-
-// Close the file
-
-
-    // TODO: Implement me!
-
-    return NULL;
 }
 
 void write_image_to_file(const float *img, int w, int h, const char *filename) {
