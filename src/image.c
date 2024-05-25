@@ -147,10 +147,10 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
             printf("w = %d with h = %d and value = %f \n", *w, *h, value);
             fflush(stdout);
             if(value > 255 || value < 0){
+                array_destroy(img);
                 return NULL;
             }
             img[position] = value;
-
         }
     }
 
