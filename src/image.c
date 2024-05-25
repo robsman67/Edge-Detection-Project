@@ -108,34 +108,48 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
         fclose(file);
         return NULL;
     }
-
-    //check the type
-    char header [100];
-    fgets(header, 50, file);
-    printf("type :  %s", header);
-    fflush(stdout);
-    //if not valide return NULL
-    if (strcmp("P2", header) == 1){
+    char right_type [] = "P2";
+    char header [3];
+    fscanf(file, "%s \n", header);
+    if (strcmp(right_type, header) != 0){
+        fclose(file);
         return NULL;
     }
 
 
-
-    int header_int = 0;
-    header_int = fgetc(file);
-
-    while (header_int != EOF && header_int != 10 && header_int != 13) {
-        printf("le carracter %d \n", header_int);
-        fflush(stdout);
-        if (header_int != 32) {
-            printf("le while %c \n", header_int);
-            fflush(stdout);
-        }
-        header_int = fgetc(file);
+    //store the w and h and check if they are positive
+    fscanf(file, "%d %d \n", w, h);
+    if (*w < 0 || *h < 0){
+        fclose(file);
+        return NULL;
     }
-    //white space + store w and h
 
+    //check if the maximum ‘brightness’ is equal to 255
+    int test;
+    fscanf(file, "%d \n", &test);
+    if(test != 255){
+        fclose(file);
+        return NULL;
+    }
 
+    //create an array
+    int size = *w * *h;
+    float *img = NULL;
+    img = array_init(size);
+
+    int position = 0;
+    float value = 0;
+    for (int i = 0; i < *h; i++) { //for the h
+        for (int j = 0; j < *w; j++) { // for the w
+            position = i * *w + j; // position of the table
+            fscanf(file, "%f", &value);
+            img[position] = value;
+        }
+    }
+
+    fclose(file);
+
+    return img;
 
     char myString[10000];
     while(fgets(myString, 100, file)) {
@@ -150,7 +164,7 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
 
 
 // Close the file
-    fclose(file);
+
 
     // TODO: Implement me!
 
