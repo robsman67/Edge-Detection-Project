@@ -118,8 +118,7 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
 
     //store the w and h and check if they are positive
     fscanf(file, "%d %d \n", w, h);
-    printf("w = %d and h = %d", *w, *h);
-    fflush(stdout);
+
     if (*w < 0 || *h < 0){
         fclose(file);
         return NULL;
@@ -144,8 +143,8 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
         for (int j = 0; j < *w; j++) { // for the w
             position = i * *w + j; // position of the table
             fscanf(file, "%f", &value);
-            printf("w = %d with h = %d and value = %f \n", *w, *h, value);
-            fflush(stdout);
+            //printf("w = %d with h = %d and value = %f \n", j, i, value);
+            //fflush(stdout);
             if(value > 255 || value < 0){
                 array_destroy(img);
                 return NULL;
